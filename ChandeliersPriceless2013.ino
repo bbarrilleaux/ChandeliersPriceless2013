@@ -1,5 +1,5 @@
 
-// LED Code for Chandelierium by the Seaside: This works with 3 IR proximity sensors (Sharp 2Y0A02) and 3 Neopixel WS2811 LED strips. 
+// Arduino code for Chandelierium by the Seaside: This works with 3 IR proximity sensors (Sharp 2Y0A02) and 3 Neopixel WS2811 LED strips. 
 /*************************************************************************************/
 
 #include "FastSPI_LED2.h"
@@ -29,9 +29,9 @@ const int mooddelay = 1; // Increase this to slow down the color cycling.
 int moodcounter = 0; // just a counter...
 
 // Variables for dimming the light when inactive
-unsigned long dimtime = 600000; //30 minutes in milliseconds = 600000
-unsigned long timer = 1000; 
-int dimlevel = 150; // can go from 1 to 255.
+unsigned long dimtime = 600000; //how long it waits before dimming. 30 minutes in milliseconds = 600000
+unsigned long timer = 1000; //just a timer thing....
+int dimlevel = 150; // set initial brightness; can go from 1 to 255.
 
 void setup() {
    LEDS.addLeds<WS2811, 5>(leds[0], NUM_LEDS);
@@ -91,16 +91,16 @@ void loop() {
    LEDS.setBrightness(dimlevel); 
 }
 
- //Fill the strip with rainbow starting from color c
+ //Fill the strip with 1/3 of a rainbow, starting from color c
 void rainbow(struct CRGB *leds, uint32_t c) {
   uint16_t i;
     for (i=0; i < NUM_LEDS; i++) {
-      leds[i] = RGBWheel(((i * 128 / NUM_LEDS) + c) % 384);
+      leds[i] = RGBWheel(((i * 128 / NUM_LEDS) + c) % 384); // 128 = 384/3 = 1/3 of the rainbow.
     }
 }
 
 /* RGB Color Wheel Helper function */
-//Input a value 0 to 384 to get a color value. dimmer reduces the brightness without changing the hue.
+//Input a value 0 to 384 to get a color value. 
 CRGB RGBWheel(uint16_t WheelPos) {
   byte r, g, b;
   switch(WheelPos / 128)
@@ -121,6 +121,6 @@ CRGB RGBWheel(uint16_t WheelPos) {
       g = 0;                    // green off
       break;
   }
-  return(CRGB(g, r, b));    
+  return(CRGB(g, r, b));   //My LED strips are wired in a g,r,b order for some reason. 
 }
 
