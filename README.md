@@ -9,11 +9,9 @@ The LED strips slowly cycle through a rainbow at low brightness when no one is i
 If no one interacts with the whole assembly for 30 minutes, the brightness slowly dims to conserve battery life. 
 
 Fritzing wiring diagram:
-<<<<<<< HEAD
 ![Fritzing wiring diagram](http://i.imgur.com/pWChcWg.png)
+
+Laser cutting: https://vine.co/v/b37gM5mK9ae
 
 Final results!
 ![Chandelierium by the Seaside](http://i.imgur.com/4ngTnLg.jpg)
-=======
-![Fritzing wiring diagram](http://i.imgur.com/pWChcWg.png)
->>>>>>> 0b23b99c52eb556eacfd047d43742c80fb7f3b0d
